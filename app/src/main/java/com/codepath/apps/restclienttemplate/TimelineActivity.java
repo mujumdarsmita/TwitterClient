@@ -69,7 +69,14 @@ public class TimelineActivity extends AppCompatActivity {
       client.getNextPageOfTweets(new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Headers headers, JSON json) {
-          Log.i(TAG,"Onsuccess : on LoadMore" + json.toString());
+          Log.i(TAG,"onSuccess for LoadMore Data" + json.toString());
+          JSONArray jsonArray = json.jsonArray;
+          try{
+            List<Tweet> tweets = Tweet.fromJsonArray(jsonArray);
+            adapter.addAll(tweets);
+          } catch (JSONException e) {
+            e.printStackTrace();
+          }
         }
 
         @Override
@@ -79,7 +86,7 @@ public class TimelineActivity extends AppCompatActivity {
                               Throwable throwable) {
           Log.i(TAG, "Cannot Load");
         }
-      }, (int) tweets.get(tweets.size() - 1).id);
+      }, tweets.get(tweets.size() - 1).id);
   }
 
   private void populateHomeTimeline() {
