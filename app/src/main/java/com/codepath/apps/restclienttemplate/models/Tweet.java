@@ -25,6 +25,7 @@ public class Tweet {
   public int retweetCount;
   public int favorite_count;
   public String postUrl;
+  public String videoUrl;
 
 
   public static  Tweet fromJson(JSONObject jsonObject) throws JSONException {
@@ -35,6 +36,7 @@ public class Tweet {
     tweet.id = jsonObject.getLong("id");
     tweet.retweetCount = jsonObject.getInt("retweet_count");
     tweet.favorite_count = jsonObject.getInt("favorite_count");
+
     //tweet.postUrl =jsonObject.getJSONObject("extended_entities").getJSONArray("media").getString("");
     if (jsonObject.has("extended_entities") && jsonObject.getJSONObject("extended_entities").has(
         "media")) {
@@ -45,7 +47,20 @@ public class Tweet {
           break;
         }
       }
+
+      for (int index = 0; index < array.length(); index++) {
+        JSONObject object =  array.getJSONObject(index);
+        if (object.has("video_info") && object.getJSONObject("video_info").has("variants")) {
+          JSONArray variantsArray = object.getJSONObject("video_info").getJSONArray("variants");
+          for (int j = 0; j < variantsArray.length() ; j++) {
+            if (variantsArray.getJSONObject(j).getString("url") != null) {
+              tweet.videoUrl =variantsArray.getJSONObject(j).getString("url");
+            }
+          }
+        }
+      }
     }
+
     return tweet;
 
   }

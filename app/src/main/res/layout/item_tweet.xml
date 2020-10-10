@@ -57,21 +57,31 @@
             android:linksClickable="true"
             />
 
-    <ImageView
-            android:id="@+id/ivPostImage"
+<!--    <ImageView-->
+<!--            android:id="@+id/ivPostImage"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:layout_marginTop="2dp"-->
+<!--            android:layout_toEndOf="@+id/ivProfileImage"-->
+<!--            android:layout_below="@id/tvBody"-->
+<!--        />-->
+
+    <VideoView
+            android:id="@+id/vvTweet"
             android:layout_width="300dp"
             android:layout_height="200dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="2dp"
             android:layout_toEndOf="@+id/ivProfileImage"
             android:layout_below="@id/tvBody"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="2dp"
         />
 
     <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnRetweet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivPostImage"
+            android:layout_below="@+id/vvTweet"
             android:layout_marginStart="15dp"
             android:layout_marginTop="2dp"
             android:layout_toEndOf="@+id/ivProfileImage"
@@ -82,7 +92,7 @@
             android:id="@+id/tvRetweet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivPostImage"
+            android:layout_below="@+id/vvTweet"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/btnRetweet"
             android:textSize="14sp"
@@ -93,7 +103,7 @@
             android:id="@+id/btnLike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivPostImage"
+            android:layout_below="@+id/vvTweet"
             android:layout_marginStart="30dp"
             android:layout_marginTop="2dp"
             android:layout_toEndOf="@+id/tvRetweet"
@@ -104,7 +114,7 @@
             android:id="@+id/tvLike"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/ivPostImage"
+            android:layout_below="@+id/vvTweet"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@+id/btnLike"
             android:textSize="14sp"

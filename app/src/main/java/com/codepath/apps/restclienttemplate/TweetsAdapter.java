@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,7 +80,8 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
     TextView tvRetweet;
     TextView tvLikes;
     RelativeLayout tweetContainer;
-    ImageView ivPostImage;
+    VideoView vvTweet;
+    //ImageView ivPostImage;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
@@ -91,7 +93,8 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
       tweetContainer = itemView.findViewById(R.id.tweetContainer);
       tvRetweet = itemView.findViewById(R.id.tvRetweet);
       tvLikes = itemView.findViewById(R.id.tvLike);
-      ivPostImage = itemView.findViewById(R.id.ivPostImage);
+      //ivPostImage = itemView.findViewById(R.id.ivPostImage);
+      vvTweet = itemView.findViewById(R.id.vvTweet);
 
     }
 
@@ -105,11 +108,20 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
       tvCreatedTime.setText(String.valueOf(tweet.getFormattedTimestamp()));
       tvRetweet.setText(String.valueOf(tweet.retweetCount));
       tvLikes.setText(String.valueOf(tweet.favorite_count));
-      if (tweet.postUrl != null) {
-        Glide.with(context).load(tweet.postUrl).into(ivPostImage);
-        ivPostImage.setVisibility(View.VISIBLE);
-      } else {
-        ivPostImage.setVisibility(View.GONE);
+//      if (tweet.postUrl != null) {
+//        Glide.with(context).load(tweet.postUrl).into(ivPostImage);
+//        ivPostImage.setVisibility(View.VISIBLE);
+//      } else {
+//        ivPostImage.setVisibility(View.GONE);
+//      }
+
+      if(tweet.videoUrl != null){
+        vvTweet.setVideoPath(tweet.videoUrl);
+        vvTweet.setVisibility(View.VISIBLE);
+        vvTweet.start();
+      }
+      else{
+        vvTweet.setVisibility(View.GONE);
       }
 
       tweetContainer.setOnClickListener(new View.OnClickListener() {
