@@ -2,39 +2,107 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "a06521f5ba00a3f69536e75e77bd2cf4",
+    "identityHash": "8137ac7c573ead106755b71a79722a79",
     "entities": [
       {
-        "tableName": "SampleModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `name` TEXT)",
+        "tableName": "TweetOffline",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`UId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `body` TEXT, `id` INTEGER NOT NULL, `retweetCount` INTEGER NOT NULL, `favorite_count` INTEGER NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "UId",
+            "columnName": "UId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "body",
+            "columnName": "body",
+            "affinity": "TEXT",
+            "notNull": false
+          },
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
+          },
+          {
+            "fieldPath": "retweetCount",
+            "columnName": "retweetCount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favorite_count",
+            "columnName": "favorite_count",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "UId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "UserOffline",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`UId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `screenName` TEXT, `profileImageUrl` TEXT, FOREIGN KEY(`UId`) REFERENCES `TweetOffline`(`UId`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "UId",
+            "columnName": "UId",
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "name",
             "columnName": "name",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "screenName",
+            "columnName": "screenName",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "profileImageUrl",
+            "columnName": "profileImageUrl",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "UId"
           ],
           "autoGenerate": true
         },
         "indices": [],
-        "foreignKeys": []
+        "foreignKeys": [
+          {
+            "table": "TweetOffline",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "UId"
+            ],
+            "referencedColumns": [
+              "UId"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'a06521f5ba00a3f69536e75e77bd2cf4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8137ac7c573ead106755b71a79722a79')"
     ]
   }
 }

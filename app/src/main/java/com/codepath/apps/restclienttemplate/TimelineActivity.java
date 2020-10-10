@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -32,6 +33,15 @@ public class TimelineActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_timeline);
+    androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(toolbar);
+
+// ...
+// Display icon in the toolbar
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
+    getSupportActionBar().setLogo(R.drawable.ic_launcher_twitter_round);
+    getSupportActionBar().setDisplayUseLogoEnabled(true);
+
     client = TwitterApp.getRestClient(this);
     swipeContainer = findViewById(R.id.swipeContainer);
     swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -98,6 +108,7 @@ public class TimelineActivity extends AppCompatActivity {
         try {
           adapter.clear();
           adapter.addAll(Tweet.fromJsonArray(results));
+          // Create offline tweet object and store it.
           swipeContainer.setRefreshing(false);
         } catch (JSONException e) {
           Log.e(TAG, "Json Exception", e);

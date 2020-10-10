@@ -7,30 +7,38 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
-import com.codepath.apps.restclienttemplate.models.SampleModel;
-import com.codepath.apps.restclienttemplate.models.SampleModelDao;
+import com.codepath.apps.restclienttemplate.models.TweetOffline;
+import com.codepath.apps.restclienttemplate.models.UserDao;
+import com.codepath.apps.restclienttemplate.models.UserOffline;
 import com.codepath.oauth.OAuthLoginActionBarActivity;
 
 public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
-	SampleModelDao sampleModelDao;
+	UserDao userDao;
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		final SampleModel sampleModel = new SampleModel();
-		sampleModel.setName("CodePath");
+		// If thre are any data. Populate the UI
 
-		sampleModelDao = ((TwitterApp) getApplicationContext()).getMyDatabase().sampleModelDao();
-
-		AsyncTask.execute(new Runnable() {
-			@Override
-			public void run() {
-				sampleModelDao.insertModel(sampleModel);
-			}
-		});
+//    // Populating offline tweets.
+//		final TweetOffline tweetOffline = new TweetOffline();
+//    //tweetOffline.setName("CodePath");
+//    final UserOffline userOffline = new UserOffline();
+//    // Derive from Tweet class.
+//    userOffline.name = "Smita";
+//
+//    userDao = ((TwitterApp) getApplicationContext()).getMyDatabase().userDao();
+//
+//		AsyncTask.execute(new Runnable() {
+//			@Override
+//			public void run() {
+//        userDao.insertModel(userOffline);
+//			}
+//		});
 	}
 
 
