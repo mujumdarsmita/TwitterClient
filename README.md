@@ -21,7 +21,7 @@ The following **optional** features are implemented:
 - [X] Links in tweets are clickable and will launch the web browser
 - [X] User can tap a tweet to display a "detailed" view of that tweet
 - [X] User can see embedded image media within the tweet detail view
-- [ ] User can watch embedded video within the tweet
+- [X] User can watch embedded video within the tweet
 - [ ] User can open the twitter app offline and see last loaded tweets
 - [X] On the Twitter timeline, leverage the CoordinatorLayout to apply scrolling behavior that hides / shows the toolbar.
 
@@ -33,7 +33,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='Walkthrough.gif' title='Video Walkthrough' width='350' alt='Video Walkthrough' />
+<img src='WalkthroughUpdated.gif' title='Video Walkthrough' width='350' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
