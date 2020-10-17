@@ -4,17 +4,16 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 
-import com.codepath.apps.restclienttemplate.models.TweetOffline;
-import com.codepath.apps.restclienttemplate.models.UserDao;
-import com.codepath.apps.restclienttemplate.models.UserOffline;
+import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.TweetDao;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.codepath.oauth.OAuthLoginActionBarActivity;
 
 public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 
-	UserDao userDao;
+	TweetDao TweetDao;
 
 	
 	@Override
@@ -22,34 +21,29 @@ public class LoginActivity extends OAuthLoginActionBarActivity<TwitterClient> {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 
-		// If thre are any data. Populate the UI
+		// If there are any data. Populate the UI
 
-//    // Populating offline tweets.
-//		final TweetOffline tweetOffline = new TweetOffline();
+    // Populating offline tweets.
+//		final Tweet tweetOffline = new Tweet();
 //    //tweetOffline.setName("CodePath");
-//    final UserOffline userOffline = new UserOffline();
+//    final User userOffline = new User();
 //    // Derive from Tweet class.
 //    userOffline.name = "Smita";
-//
-//    userDao = ((TwitterApp) getApplicationContext()).getMyDatabase().userDao();
+
+    TweetDao = ((TwitterApp) getApplicationContext()).getMyDatabase().tweetDao();
 //
 //		AsyncTask.execute(new Runnable() {
 //			@Override
 //			public void run() {
-//        userDao.insertModel(userOffline);
+//        //TweetDao.insertModel();
 //			}
 //		});
 	}
 
 
-	// Inflate the menu; this adds items to the action bar if it is present.
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.login, menu);
-		return true;
-	}
 
-	// OAuth authenticated successfully, launch primary authenticated activity
+
+  // OAuth authenticated successfully, launch primary authenticated activity
 	// i.e Display application "homepage"
 	@Override
 	public void onLoginSuccess() {

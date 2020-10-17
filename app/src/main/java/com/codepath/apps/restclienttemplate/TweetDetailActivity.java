@@ -55,8 +55,8 @@ public class TweetDetailActivity extends AppCompatActivity {
     tvScreenName.setText("@" + tweet.user.screenName);
     tvBody.setText(tweet.body);
     tvCreatedAt.setText(TimeFormatter.getTimeStamp(tweet.createdAt));
-    tvRetweets.setText(String.valueOf(tweet.retweetCount) + " Retweets");
-    tvLikes.setText(String.valueOf(tweet.favorite_count) + " Likes");
+    tvRetweets.setText(String.valueOf(tweet.retweetCount));
+    tvLikes.setText(String.valueOf(tweet.favorite_count));
     Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(radius, margin)).into(ivProfileImage);
     if (tweet.postUrl != null) {
       Glide.with(context).load(tweet.postUrl).into(ivPostImage);

@@ -4,9 +4,9 @@
         android:versionCode="1"
         android:versionName="1.0">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
 
     <application
             android:name=".TwitterApp"
@@ -14,7 +14,8 @@
             android:icon="@drawable/ic_launcher_twitter"
             android:label="@string/app_name"
             android:theme="@style/AppTheme">
-        <activity android:name=".TweetDetailActivity"></activity>
+        <activity android:name=".ComposeActivity"></activity>
+        <activity android:name=".TweetDetailActivity" />
         <activity android:name=".TimelineActivity" />
         <activity
                 android:name=".LoginActivity"
@@ -27,7 +28,7 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
+                <action android:name="android.intent.action.SEND"/>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 

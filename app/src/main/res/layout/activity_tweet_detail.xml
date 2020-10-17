@@ -15,7 +15,7 @@
 
             >
 
-        <!-- Toolbar is the actual app bar with text and the action items -->
+<!--         Toolbar is the actual app bar with text and the action items-->
         <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@+id/ivProfileImage"
                     android:textColor="#000000"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="Smita Mujumdar" />
 
@@ -74,11 +74,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/ivProfileImage"
+                    android:layout_marginTop="20dp"
                     android:autoLink="all"
                     android:linksClickable="true"
-                    android:layout_marginTop="20dp"
                     android:padding="5dp"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     tools:text='To make room for more expression, we will now count all emojis as equal—including those with gender‍‍‍ and skin t… https://t.co/MkGjXf9aXm"' />
 
 
@@ -111,10 +111,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewSeparator1"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="99 Retweets" />
+                    tools:text="99" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnRetweet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/viewSeparator1"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:backgroundTint="#FFFFFF"
+                    android:src="@drawable/ic_vector_retweet_stroke" />
 
             <TextView
                     android:id="@+id/tvLike"
@@ -122,38 +132,38 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/viewSeparator1"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_toEndOf="@id/tvRetweet"
+                    android:layout_marginTop="10dp"
+                    android:layout_toEndOf="@id/btnRetweet"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    tools:text="108 Likes" />
-            <View
-                    android:id="@+id/viewSeparator2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"
-                    android:layout_below="@id/tvRetweet"
-                    />
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                    android:id="@+id/btnRetweet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/viewSeparator2"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="2dp"
-                    android:backgroundTint="#FFFFFF"
-                    android:src="@drawable/ic_vector_retweet_stroke" />
+                    tools:text="108" />
 
             <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnLike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/viewSeparator2"
+                    android:layout_below="@+id/viewSeparator1"
                     android:layout_marginStart="120dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="10dp"
                     android:backgroundTint="#FFFFFF"
                     android:src="@drawable/ic_vector_heart_stroke" />
+            <View
+                    android:id="@+id/viewSeparator2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_below="@id/btnRetweet"
+                    />
+
+
+            <EditText
+                     android:id="@+id/etReply"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnLike"
+                    android:hint="Tweet Your Reply"
+
+                />
 
         </RelativeLayout>
 

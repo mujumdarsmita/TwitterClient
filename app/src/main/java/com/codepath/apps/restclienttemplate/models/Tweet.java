@@ -3,6 +3,8 @@ package com.codepath.apps.restclienttemplate.models;
 import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.codepath.apps.restclienttemplate.TimeFormatter;
@@ -16,16 +18,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Parcel
+
+@Entity(foreignKeys = @ForeignKey(entity = User.class, parentColumns = "parent_UId",
+                                  childColumns = "UId"))
 public class Tweet {
 
+  @ColumnInfo
   public  String body;
-  public static String createdAt;
+  @ColumnInfo
+  public String createdAt;
+  @ColumnInfo
+  @PrimaryKey
   public long id;
-  public  User user;
+  @Ignore
+  public User user;
+  @ColumnInfo
   public int retweetCount;
+  @ColumnInfo
   public int favorite_count;
+  @Ignore
   public String postUrl;
+  @Ignore
   public String videoUrl;
+  @ColumnInfo
+  public long UId;
+
+
+  //needed by Parceler library
+  public Tweet(){
+
+  }
 
 
   public static  Tweet fromJson(JSONObject jsonObject) throws JSONException {
@@ -36,6 +58,7 @@ public class Tweet {
     tweet.id = jsonObject.getLong("id");
     tweet.retweetCount = jsonObject.getInt("retweet_count");
     tweet.favorite_count = jsonObject.getInt("favorite_count");
+    tweet.UId = tweet.user.parent_UId;
 
     //tweet.postUrl =jsonObject.getJSONObject("extended_entities").getJSONArray("media").getString("");
     if (jsonObject.has("extended_entities") && jsonObject.getJSONObject("extended_entities").has(
@@ -74,7 +97,7 @@ public class Tweet {
     return  tweets;
   }
 
-  public static String getFormattedTimestamp(){
+  public String getFormattedTimestamp(){
       return TimeFormatter.getTimeDifference(createdAt);
   }
 

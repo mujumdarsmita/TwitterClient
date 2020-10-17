@@ -35,6 +35,10 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
     this.tweets = tweets;
   }
 
+  public void insertTop(Tweet tweet){
+    tweets.add(0, tweet);
+    notifyDataSetChanged();
+  }
   // for each row, inflate layout
   @NonNull
   @Override
@@ -102,9 +106,11 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
       int radius = 87;
       int margin = 10;
       tvBody.setText(tweet.body);
-      tvName.setText(tweet.user.name);
-      tvScreenName.setText("@" + tweet.user.screenName);
-      Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(radius, margin)).into(ivProfileImage);
+      if(tweet.user != null) {
+        tvName.setText(tweet.user.name);
+        tvScreenName.setText("@" + tweet.user.screenName);
+        Glide.with(context).load(tweet.user.profileImageUrl).transform(new RoundedCornersTransformation(radius, margin)).into(ivProfileImage);
+      }
       tvCreatedTime.setText(String.valueOf(tweet.getFormattedTimestamp()));
       tvRetweet.setText(String.valueOf(tweet.retweetCount));
       tvLikes.setText(String.valueOf(tweet.favorite_count));
